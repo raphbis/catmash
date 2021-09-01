@@ -9,14 +9,44 @@ import {
   incrementIfOdd,
   selectCount,
 } from './counterSlice';
-import styles from './Counter.module.css';
+import styles from './CatClicker.module.css';
 
-export function Counter() {
+export interface Cat {
+  id : string,
+  url : string
+}
+
+export interface Props {
+  cats: Cat[]
+}
+
+function getRandomInt(max: number, previousNumber: number = -1) {
+  const randomNumber = Math.floor(Math.random() * max + 1);
+
+  if (randomNumber === previousNumber && randomNumber === max)
+    return randomNumber - 1;
+  else if (randomNumber === previousNumber)
+    return randomNumber + 1;
+  else
+    return randomNumber;
+}
+
+const CatClicker = (props: Props) => {
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   const incrementValue = Number(incrementAmount) || 0;
+
+  const rand1 = getRandomInt(props.cats.length);
+  let rand2 = getRandomInt(props.cats.length, rand1);
+
+  if (rand1 === rand2)
+    rand2++;
+
+  console.log("rand1", props.cats[rand1]);
+  console.log("rand2", props.cats[rand2]);
+  console.log("rand1, rand2", rand1, rand2);
 
   return (
     <div>
@@ -37,7 +67,7 @@ export function Counter() {
           +
         </button>
       </div>
-      <div className={styles.row}>
+      {/* <div className={styles.row}>
         <input
           className={styles.textbox}
           aria-label="Set increment amount"
@@ -62,7 +92,9 @@ export function Counter() {
         >
           Add If Odd
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
+
+export default CatClicker;
