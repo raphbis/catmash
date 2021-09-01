@@ -1,18 +1,24 @@
 import React from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
+import jsonCats from './ressources/cats.json';
+import CatClicker from './features/cat/CatClicker';
 
-function App() {
+export interface Cat {
+  id : string,
+  url : string
+}
+
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
+        <CatClicker cats={jsonCats.images as Cat[]} />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <span>
+        {/* <span>
           <span>Learn </span>
           <a
             className="App-link"
@@ -49,7 +55,7 @@ function App() {
           >
             React Redux
           </a>
-        </span>
+        </span> */}
       </header>
     </div>
   );
