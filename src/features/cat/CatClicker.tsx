@@ -4,9 +4,9 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
   decrement,
   increment,
-  incrementByAmount,
-  incrementAsync,
-  incrementIfOdd,
+  // incrementByAmount,
+  // incrementAsync,
+  // incrementIfOdd,
   selectCount,
 } from './counterSlice';
 import styles from './CatClicker.module.css';
@@ -34,9 +34,9 @@ function getRandomInt(max: number, previousNumber: number = -1) {
 const CatClicker = (props: Props) => {
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
-  const [incrementAmount, setIncrementAmount] = useState('2');
+  // const [incrementAmount, setIncrementAmount] = useState('2');
 
-  const incrementValue = Number(incrementAmount) || 0;
+  // const incrementValue = Number(incrementAmount) || 0;
 
   const rand1 = getRandomInt(props.cats.length);
   let rand2 = getRandomInt(props.cats.length, rand1);
